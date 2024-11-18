@@ -19,3 +19,12 @@ if __name__ == "__main__":
     for key in range(len(cipher.alphabet)):
         decrypted_message = cipher.decrypt(message, key)
         print(f"{key}: {decrypted_message}")
+
+        if "password" in decrypted_message.lower():
+            print(f"Подобранный ключ: {key}. Расшифрованное сообщение: {decrypted_message}")
+
+            file_path = input("Введите путь для сохранения результата: ")
+            with open(file_path, 'w', encoding='utf-8') as file:
+                file.write(f"Подобранный ключ: {key}\n")
+                file.write(f"Расшифрованное сообщение: {decrypted_message}\n")
+            break
